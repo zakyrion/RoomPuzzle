@@ -1,0 +1,1 @@
+﻿namespace RoomPuzzle { public interface IOpenable { void TryOpen(); } }
