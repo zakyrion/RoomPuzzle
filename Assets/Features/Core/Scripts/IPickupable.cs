@@ -1,1 +1,0 @@
-﻿namespace RoomPuzzle { public interface IPickupable { void Pickup(); } }

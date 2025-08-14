@@ -1,24 +1,20 @@
 using UnityEngine;
-
-namespace Zenject.SpaceFighter
+using System;
+namespace RoomPuzzle
 {
-    public class PlayerInputHandler : ITickable
+    /// <summary>
+    /// VIEW (Component): Its only responsibility is to detect raw input
+    /// and fire an event. It has no knowledge of what interaction means.
+    /// </summary>
+    public class PlayerInputHandler : MonoBehaviour
     {
-        readonly PlayerInputState _inputState;
-
-        public PlayerInputHandler(PlayerInputState inputState)
+        public event Action OnInteractPressed;
+        private void Update()
         {
-            _inputState = inputState;
-        }
-
-        public void Tick()
-        {
-            _inputState.IsMovingLeft = Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A);
-            _inputState.IsMovingRight = Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D);
-            _inputState.IsMovingUp = Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W);
-            _inputState.IsMovingDown = Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S);
-
-            _inputState.IsFiring = Input.GetKey(KeyCode.Space) || Input.GetMouseButton(0);
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                OnInteractPressed?.Invoke();
+            }
         }
     }
 }

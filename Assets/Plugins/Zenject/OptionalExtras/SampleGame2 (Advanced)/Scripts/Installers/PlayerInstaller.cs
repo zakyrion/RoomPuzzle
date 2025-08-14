@@ -1,4 +1,5 @@
 ﻿using System;
+using RoomPuzzle;
 using UnityEngine;
 
 namespace Zenject.SpaceFighter
@@ -6,7 +7,7 @@ namespace Zenject.SpaceFighter
     public class PlayerInstaller : MonoInstaller
     {
         [SerializeField]
-        Settings _settings = null;
+        private Settings _settings;
 
         public override void InstallBindings()
         {
