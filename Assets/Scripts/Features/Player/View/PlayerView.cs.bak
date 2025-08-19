@@ -34,7 +34,7 @@ namespace RoomPuzzle.Features.Player.View
         {
             _rigidbody = GetComponent<Rigidbody>();
             _collider = GetComponent<CapsuleCollider>();
-
+            _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         }
 
         private void Start()
@@ -52,8 +52,6 @@ namespace RoomPuzzle.Features.Player.View
             var accelerationRate = Mathf.Abs(targetSpeed) > 0.01f ? _playerModel.Acceleration : _playerModel.Deceleration;
             var movementForce = speedDifference * accelerationRate;
             _rigidbody.AddForce(movementForce * Vector2.right, ForceMode.Force);
-            if (_rigidbody.linearVelocity.y < 0)
-                _rigidbody.AddForce(Vector3.up * Physics.gravity.y * 2f, ForceMode.Acceleration);
 
             CheckIfGrounded();
             HandleOneWayPlatforms();

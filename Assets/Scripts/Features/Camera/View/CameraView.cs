@@ -1,25 +1,16 @@
+using RoomPuzzle.Features.Camera.View;
 using UnityEngine;
 
-namespace RoomPuzzle.Features.Camera.View
+[RequireComponent(typeof(Camera))]
+public class CameraView : MonoBehaviour, ICameraView
 {
-    public class CameraView : MonoBehaviour, ICameraView
+    [SerializeField] private Vector3 offset = new(0, 5, -8);
+    [SerializeField] private float smoothSpeed = 5f;
+
+    public void Follow(Vector3 targetPosition)
     {
-        [SerializeField] private Vector3 _offset = new(0, 2, -10);
-        [SerializeField] private float _smoothSpeed = 0.125f;
-        private Transform _target;
-
-        private void LateUpdate()
-        {
-            if (_target == null)
-                return;
-            var desiredPosition = _target.position + _offset;
-            var smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, _smoothSpeed);
-            transform.position = smoothedPosition;
-        }
-
-        public void SetTarget(Transform target)
-        {
-            _target = target;
-        }
+        var desiredPos = targetPosition + offset;
+        transform.position = Vector3.Lerp(transform.position, desiredPos, smoothSpeed * Time.deltaTime);
+        transform.LookAt(targetPosition);
     }
 }

@@ -1,18 +1,18 @@
+// METADATA file_path: Assets/Scripts/Features/Input/Model/InputModel.cs
 using System;
-using UnityEngine;
-using Zenject;
 
 namespace RoomPuzzle.Features.Input.Model
 {
-    public class InputModel : IInputModel, ITickable
+    public class InputModel : IInputModel
     {
+        public float Horizontal { get; private set; }
+        public float Vertical { get; private set; }
         public event Action OnJumpPressed;
-        public float HorizontalInput { get; private set; }
-
-        public void Tick()
+        public void Update()
         {
-            HorizontalInput = UnityEngine.Input.GetAxis("Horizontal");
-            if (UnityEngine.Input.GetKeyDown(KeyCode.Space))
+            Horizontal = UnityEngine.Input.GetAxis("Horizontal");
+            Vertical = UnityEngine.Input.GetAxis("Vertical");
+            if (UnityEngine.Input.GetButtonDown("Jump"))
             {
                 OnJumpPressed?.Invoke();
             }

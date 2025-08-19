@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 673753078154366504}
   - component: {fileID: 6968393669083377917}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerView
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +67,7 @@ Rigidbody:
   m_GameObject: {fileID: 4898625276179390865}
   serializedVersion: 5
   m_Mass: 1.3
-  m_LinearDamping: 0
+  m_LinearDamping: 0.1
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -82,9 +82,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_Constraints: 120
+  m_CollisionDetection: 2
 --- !u!114 &6968393669083377917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6543171bf4cc44ee2931b9ac9510b90f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debugIsGrounded: 0
   _platformLayerMask:
     serializedVersion: 2
     m_Bits: 256

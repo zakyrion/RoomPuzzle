@@ -1,28 +1,20 @@
+// METADATA file_path: Assets/Scripts/Features/Camera/Presenter/CameraPresenter.cs
 using RoomPuzzle.Features.Camera.View;
-using RoomPuzzle.Features.Player.View;
-using UnityEngine;
+using RoomPuzzle.Features.Player.Model;
 using Zenject;
-
-namespace RoomPuzzle.Features.Camera.Presenter
+public class CameraPresenter : IInitializable, ITickable
 {
-    public class CameraPresenter : ICameraPresenter, IInitializable
+    private readonly ICameraView _cameraView;
+    private readonly IPlayerModel _playerModel;
+    public CameraPresenter(ICameraView cameraView, IPlayerModel playerModel)
     {
-        private readonly ICameraView _cameraView;
-        private readonly IPlayerView _playerView;
-
-        public CameraPresenter(ICameraView cameraView, IPlayerView playerView)
-        {
-            _cameraView = cameraView;
-            _playerView = playerView;
-        }
-
-        public void Initialize()
-        {
-            var playerTransform = (_playerView as MonoBehaviour)?.transform;
-            if (playerTransform != null)
-            {
-                (_cameraView as CameraView)?.SetTarget(playerTransform);
-            }
-        }
+        _cameraView = cameraView;
+        _playerModel = playerModel;
+    }
+    public void Initialize() { }
+    public void Tick()
+    {
+        if (_playerModel != null)
+            _cameraView.Follow(_playerModel.Position);
     }
 }

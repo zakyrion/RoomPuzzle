@@ -1,12 +1,14 @@
 using RoomPuzzle.FinishPoint.Model;
 using RoomPuzzle.FinishPoint.Presenter;
 using RoomPuzzle.FinishPoint.View;
+using UnityEngine;
 using Zenject;
 
 namespace RoomPuzzle.FinishPoint
 {
     public class FinishPointInstaller : MonoInstaller
     {
+
         public override void InstallBindings()
         {
             Container.Bind<IFinishPointLoader>().To<FinishPointLoader>().AsSingle();
@@ -17,7 +19,7 @@ namespace RoomPuzzle.FinishPoint
                 return loader.Load();
             }).AsSingle().NonLazy();
             Container.Bind<IFinishPointPresenter>().To<FinishPointPresenter>().AsSingle()
-                .OnInstantiated<IFinishPointPresenter>((ctx, presenter) => presenter.Initialize());
+                .OnInstantiated<IFinishPointPresenter>((ctx, presenter) => presenter.Initialize()).NonLazy();
         }
     }
 }

@@ -3,7 +3,7 @@ namespace RoomPuzzle.LevelComplete.Presenter
 {
     public interface ILevelCompleteLoader
     {
-        ILevelCompleteView Load();
+        ILevelCompleteUI Load();
         void Unload();
     }
 }
