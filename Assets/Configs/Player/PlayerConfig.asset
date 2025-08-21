@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 903aa61fe7f6044a2a75d5a136da7832, type: 3}
+  m_Name: PlayerConfig
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2710780933697530211, guid: cb6759a82837e4b6db4b85234289e028, type: 3}
+  sceneSpawns:
+  - sceneName: SampleScene
+    spawnPosition: {x: 0, y: 0, z: 0}

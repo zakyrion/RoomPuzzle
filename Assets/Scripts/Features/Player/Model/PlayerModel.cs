@@ -16,10 +16,6 @@ namespace Features.Player.Model
 
         public PlayerModel(PlayerConfig config)
         {
-            Acceleration = config.Acceleration;
-            Deceleration = config.Deceleration;
-            JumpForce = config.JumpForce;
-            MoveSpeed = config.MoveSpeed;
         }
     }
 }
