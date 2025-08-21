@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 903aa61fe7f6044a2a75d5a136da7832, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: 944964cb4cff84b7ca99fd9503b94ec9, type: 3}
+  m_Name: PlayerCameraConfig
   m_EditorClassIdentifier: 
-  _speed: 5
-  _jumpForce: 3
-  _startRotation: 90
+  _offset: {x: 0, y: 2, z: -4.41}
+  _initPosition: {x: -25, y: 2, z: -4.41}
