@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 903aa61fe7f6044a2a75d5a136da7832, type: 3}
-  m_Name: PlayerConfig
+  m_Name: PlayerMovementConfig
   m_EditorClassIdentifier: 
   _speed: 5
-  _jumpForce: 3
+  _jumpForce: 5
+  _jumpCooldown: 1
   _startRotation: 90

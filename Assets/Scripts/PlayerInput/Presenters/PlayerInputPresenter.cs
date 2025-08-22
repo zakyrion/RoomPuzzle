@@ -9,8 +9,8 @@ namespace PlayerInput.Presenters
     [UsedImplicitly]
     public class PlayerInputPresenter : IPlayerInputPresenter
     {
-        private readonly IPlayerInputProvider _playerInputProvider;
         private readonly IPlayerInputModel _playerInputModel;
+        private readonly IPlayerInputProvider _playerInputProvider;
         private IPlayerInputView _playerInputView;
 
         public PlayerInputPresenter(IPlayerInputProvider playerInputProvider, IPlayerInputModel playerInputModel)
@@ -35,9 +35,9 @@ namespace PlayerInput.Presenters
             _playerInputView.OnMoveChanged += OnMoveHandler;
         }
 
-        private void OnJumpHandler()
+        private void OnJumpHandler(bool jump)
         {
-            _playerInputModel.Jump();
+            _playerInputModel.Jump(jump);
         }
 
         private void OnMoveHandler(Vector2 move)

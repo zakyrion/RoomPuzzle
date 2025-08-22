@@ -1,20 +1,20 @@
 using JetBrains.Annotations;
-using Player.Views;
+using PlayerMovement.Views;
 using PlayerSpawn.Providers;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Player.Providers
+namespace PlayerMovement.Providers
 {
     [UsedImplicitly]
-    public class PlayerProvider : IPlayerProvider
+    public class PlayerMovementProvider : IPlayerMovementProvider
     {
         private const string PLAYER_PREFAB_PATH = "Prefabs/Player/MainMale_Character";
         private readonly IPlayerSpawnProvider _playerSpawnProvider;
         private GameObject _playerInstance;
-        private IPlayerView _playerView;
+        private IPlayerMovementView _playerView;
 
-        public PlayerProvider(IPlayerSpawnProvider playerSpawnProvider)
+        public PlayerMovementProvider(IPlayerSpawnProvider playerSpawnProvider)
         {
             _playerSpawnProvider = playerSpawnProvider;
         }
@@ -29,7 +29,7 @@ namespace Player.Providers
             }
         }
 
-        public IPlayerView GetPlayerView()
+        public IPlayerMovementView GetPlayerView()
         {
             if (_playerView != null)
             {
@@ -39,7 +39,7 @@ namespace Player.Providers
             var playerSpawnPoint = _playerSpawnProvider.GetPlayerSpawnPoint();
             _playerInstance = Object.Instantiate(Resources.Load<GameObject>(PLAYER_PREFAB_PATH));
             _playerInstance.transform.position = playerSpawnPoint.position;
-            _playerView = _playerInstance.GetComponent<IPlayerView>();
+            _playerView = _playerInstance.GetComponent<IPlayerMovementView>();
 
             return _playerView;
         }

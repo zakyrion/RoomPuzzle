@@ -6,27 +6,12 @@ namespace PlayerInput.Models
     [UsedImplicitly]
     public class PlayerInputModel : IPlayerInputModel
     {
-        private bool _needToJump;
-
         public Vector2 Move { get; private set; }
+        public bool NeedToJump { get; private set; }
 
-        public bool NeedToJump
+        public void Jump(bool jump)
         {
-            get
-            {
-                if (_needToJump)
-                {
-                    _needToJump = false;
-                    return true;
-                }
-
-                return false;
-            }
-        }
-
-        public void Jump()
-        {
-            _needToJump = true;
+            NeedToJump = jump;
         }
 
         public void SetMove(Vector2 move)

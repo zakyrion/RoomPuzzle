@@ -7,7 +7,7 @@ namespace PlayerInput.Models
         Vector2 Move { get; }
         bool NeedToJump { get; }
 
-        void Jump();
+        void Jump(bool jump);
         void SetMove(Vector2 move);
     }
 }

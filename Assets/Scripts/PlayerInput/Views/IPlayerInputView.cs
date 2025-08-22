@@ -6,6 +6,6 @@ namespace PlayerInput.Views
     public interface IPlayerInputView
     {
         event Action<Vector2> OnMoveChanged;
-        event Action OnJumpClicked;
+        event Action<bool> OnJumpClicked;
     }
 }

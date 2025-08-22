@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
-using Player.Models;
 using PlayerCamera.Models;
+using PlayerMovement.Models;
 using UnityEngine;
 
 namespace PlayerCamera.Mediators
@@ -8,10 +8,10 @@ namespace PlayerCamera.Mediators
     [UsedImplicitly]
     public class PlayerCameraMediator : IPlayerCameraMediator
     {
-        private readonly IPlayerModel _playerModel;
         private readonly IPlayerCameraModel _playerCameraModel;
+        private readonly IPlayerMovementModel _playerModel;
 
-        public PlayerCameraMediator(IPlayerCameraModel playerCameraModel, IPlayerModel playerModel)
+        public PlayerCameraMediator(IPlayerCameraModel playerCameraModel, IPlayerMovementModel playerModel)
         {
             _playerCameraModel = playerCameraModel;
             _playerModel = playerModel;
