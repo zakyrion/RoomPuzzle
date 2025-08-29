@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Inventory.Configs;
+using Inventory.Models;
 using PlayerScore.Models;
 using PlayerScore.Providers;
 using PlayerScore.Views;
@@ -10,11 +12,16 @@ namespace PlayerScore.Presenters
         private readonly List<IPlayerScorePickupItemView> _pickupItemViews = new();
         private readonly IPlayerScoreModel _playerScoreModel;
         private readonly IPlayerScoreProvider _playerScoreProvider;
+        private readonly IInventoryModel _inventoryModel;
 
-        public PlayerScorePickupItemsPresenter(IPlayerScoreProvider playerScoreProvider, IPlayerScoreModel playerScoreModel)
+        public PlayerScorePickupItemsPresenter(
+            IPlayerScoreProvider playerScoreProvider, 
+            IPlayerScoreModel playerScoreModel,
+            IInventoryModel inventoryModel)
         {
             _playerScoreProvider = playerScoreProvider;
             _playerScoreModel = playerScoreModel;
+            _inventoryModel = inventoryModel;
         }
 
         public void Dispose()
@@ -40,8 +47,26 @@ namespace PlayerScore.Presenters
 
         private void ItemViewPickupHandler(IPlayerScorePickupItemView itemView)
         {
+            // Check if inventory has free slot before picking up
+            if (!_inventoryModel.HasFreeSlot())
+            {
+                // Inventory is full, don't pickup the item
+                return;
+            }
+
             itemView.OnPickup -= ItemViewPickupHandler;
+            
+            // Add to score (existing behavior)
             _playerScoreModel.AddScore(itemView.Score);
+            
+            // Add to inventory (new behavior)
+            var inventoryItem = new InventoryItem(
+                $"Item {itemView.Type}",
+                itemView.Type,
+                itemView.Score
+            );
+            _inventoryModel.AddItem(inventoryItem);
+            
             _pickupItemViews.Remove(itemView);
             _playerScoreProvider.DisposePickupItem(itemView);
         }

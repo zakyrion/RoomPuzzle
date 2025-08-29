@@ -2233,6 +2233,7 @@ MonoBehaviour:
   - {fileID: 364805238}
   - {fileID: 1600292186}
   - {fileID: 2132981595}
+  - {fileID: 1035392748}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -2269,6 +2270,7 @@ Transform:
   - {fileID: 364805237}
   - {fileID: 1600292187}
   - {fileID: 2132981594}
+  - {fileID: 1035392749}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &498125528
@@ -3677,6 +3679,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8370881059521210170, guid: ca7144f54dc24ef45b66765213fcb28c, type: 3}
   m_PrefabInstance: {fileID: 953775350}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1035392747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1035392749}
+  - component: {fileID: 1035392748}
+  m_Layer: 0
+  m_Name: InventoryInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1035392748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035392747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ef7be938b6f4a3d83471991c0c4d93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1035392749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035392747}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 483879011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1042032136
 PrefabInstance:
   m_ObjectHideFlags: 0
