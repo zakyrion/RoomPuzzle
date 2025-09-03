@@ -1,7 +1,9 @@
 using System;
 using JetBrains.Annotations;
 using PlayerMovement.Configs;
+using PlayerStamina.Models;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerMovement.Models
 {
@@ -12,9 +14,12 @@ namespace PlayerMovement.Models
         public event Action OnPlayerSpawned;
 
         private readonly IPlayerMovementConfig _playerMovementConfig;
+        [Inject] private IPlayerStaminaModel _staminaModel;
+        
         private float _jumpTimestamp;
         private Vector3 _position;
-        public bool CanJump => Time.time - _jumpTimestamp > _playerMovementConfig.JumpCooldown && Grounded;
+        
+        public bool CanJump => Time.time - _jumpTimestamp > _playerMovementConfig.JumpCooldown && Grounded && _staminaModel.CanPerformJump();
         public bool Grounded { get; private set; } = true;
         public float JumpForce => _playerMovementConfig.JumpForce;
 
@@ -32,7 +37,11 @@ namespace PlayerMovement.Models
 
         public void Jump()
         {
-            _jumpTimestamp = Time.time;
+            if (_staminaModel.CanPerformJump())
+            {
+                _jumpTimestamp = Time.time;
+                _staminaModel.DrainStamina(_staminaModel.GetJumpStaminaCost());
+            }
         }
 
         public void PlayerSpawned()
