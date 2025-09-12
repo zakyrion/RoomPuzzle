@@ -1661,6 +1661,55 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8370881059521210170, guid: ca7144f54dc24ef45b66765213fcb28c, type: 3}
   m_PrefabInstance: {fileID: 318359304}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &322715727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 322715729}
+  - component: {fileID: 322715728}
+  m_Layer: 0
+  m_Name: BotDemo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &322715728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322715727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca100f09f00204bccbb231736617e653, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _toggleBotKey: 98
+  _toggleTargetSeekingKey: 116
+  _resetBehaviorKey: 114
+  _setRandomTargetKey: 103
+  _randomTargetRadius: 10
+--- !u!4 &322715729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 322715727}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &322838642
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,6 +2168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerMovementConfig: {fileID: 11400000, guid: 58a5e3082452e435cb94039dbd077f92, type: 2}
+  _playerStaminaConfig: {fileID: 11400000, guid: 31d9ab87a7fb7473ea13e7e21a709117, type: 2}
 --- !u!4 &455531591
 Transform:
   m_ObjectHideFlags: 0
@@ -2233,6 +2283,7 @@ MonoBehaviour:
   - {fileID: 364805238}
   - {fileID: 1600292186}
   - {fileID: 2132981595}
+  - {fileID: 939312744}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -2269,6 +2320,7 @@ Transform:
   - {fileID: 364805237}
   - {fileID: 1600292187}
   - {fileID: 2132981594}
+  - {fileID: 939312745}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &498125528
@@ -3615,6 +3667,52 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1055379359088473278, guid: bc7eb977eef1d4a4bbdaf34d41426e39, type: 3}
   m_PrefabInstance: {fileID: 931049512}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &939312743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 939312745}
+  - component: {fileID: 939312744}
+  m_Layer: 0
+  m_Name: BotInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &939312744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939312743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb501749345584a8693f932ba9441b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerBotConfig: {fileID: 11400000, guid: 539695a6eb39c4796b261ae020281a25, type: 2}
+  _playerBotUIPrefab: {fileID: 0}
+--- !u!4 &939312745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 939312743}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 483879011}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &953775350
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6680,3 +6778,4 @@ SceneRoots:
   - {fileID: 1663143336}
   - {fileID: 1708579201}
   - {fileID: 2017121871}
+  - {fileID: 322715729}

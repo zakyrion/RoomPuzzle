@@ -16,6 +16,7 @@ namespace PlayerMovement.Models
 
         IPlayerMovementConfig GetConfig();
         void Jump();
+        bool TryJump();
         void PlayerSpawned();
         void SetGrounded(bool grounded);
         void SetPosition(Vector3 position);

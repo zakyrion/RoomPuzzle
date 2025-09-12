@@ -42,8 +42,10 @@ namespace PlayerMovement.Presenters
         {
             if (_playerInputModel.NeedToJump && _playerModel.CanJump)
             {
-                _playerModel.Jump();
-                _playerView.Jump(_playerModel.JumpForce);
+                if (_playerModel.TryJump())
+                {
+                    _playerView.Jump(_playerModel.JumpForce);
+                }
             }
 
             if (_playerInputModel.Move.sqrMagnitude > 0)
