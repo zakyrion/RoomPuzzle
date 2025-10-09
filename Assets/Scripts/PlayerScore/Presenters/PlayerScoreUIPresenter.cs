@@ -1,3 +1,4 @@
+using Core.Presenters;
 using JetBrains.Annotations;
 using PlayerScore.Models;
 using PlayerScore.Providers;
@@ -6,35 +7,34 @@ using PlayerScore.UIs;
 namespace PlayerScore.Presenters
 {
     [UsedImplicitly]
-    public class PlayerScoreUIPresenter : IPlayerScoreUIPresenter
+    public class PlayerScoreUIPresenter : BasePresenter<IPlayerScoreModel, IPlayerScoreProvider, IPlayerScoreUI>, IPlayerScoreUIPresenter
     {
-        private readonly IPlayerScoreModel _model;
-        private readonly IPlayerScoreProvider _playerScoreProvider;
-        private IPlayerScoreUI _playerScoreUI;
-
         public PlayerScoreUIPresenter(IPlayerScoreModel model, IPlayerScoreProvider playerScoreProvider)
+            : base(model, playerScoreProvider)
         {
-            _model = model;
-            _playerScoreProvider = playerScoreProvider;
         }
 
-        public void Dispose()
+        protected override IPlayerScoreUI GetViewFromProvider()
         {
-            _playerScoreProvider.DisposePlayerScoreUI();
+            return Provider.GetPlayerScoreUI();
         }
 
-        public void Initialize()
+        protected override void OnViewCreated()
         {
-            _model.OnScoreChanged += OnScoreChangedHandler;
+            Model.OnScoreChanged += OnScoreChangedHandler;
+            View.SetActive(true);
+            View.SetScore(0);
+        }
 
-            _playerScoreUI = _playerScoreProvider.GetPlayerScoreUI();
-            _playerScoreUI.SetActive(true);
-            _playerScoreUI.SetScore(0);
+        protected override void OnBeforeDispose()
+        {
+            Model.OnScoreChanged -= OnScoreChangedHandler;
+            Provider.DisposePlayerScoreUI();
         }
 
         private void OnScoreChangedHandler(int newScore)
         {
-            _playerScoreUI.SetScore(newScore);
+            View.SetScore(newScore);
         }
     }
 }

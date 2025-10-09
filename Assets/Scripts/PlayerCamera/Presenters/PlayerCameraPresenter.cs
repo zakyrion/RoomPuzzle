@@ -1,3 +1,4 @@
+using Core.Presenters;
 using JetBrains.Annotations;
 using PlayerCamera.Models;
 using PlayerCamera.Providers;
@@ -7,34 +8,28 @@ using Zenject;
 namespace PlayerCamera.Presenters
 {
     [UsedImplicitly]
-    public class PlayerCameraPresenter : IPlayerCameraPresenter, ITickable
+    public class PlayerCameraPresenter : BasePresenter<IPlayerCameraModel, IPlayerCameraProvider, IPlayerCameraView>, IPlayerCameraPresenter, ITickable
     {
-        private readonly IPlayerCameraModel _playerCameraModel;
-        private readonly IPlayerCameraProvider _playerCameraProvider;
-        private IPlayerCameraView _playerCameraView;
-
         public PlayerCameraPresenter(IPlayerCameraModel playerCameraModel, IPlayerCameraProvider playerCameraProvider)
+            : base(playerCameraModel, playerCameraProvider)
         {
-            _playerCameraModel = playerCameraModel;
-            _playerCameraProvider = playerCameraProvider;
         }
 
-        public void Dispose()
+        protected override IPlayerCameraView GetViewFromProvider()
         {
-
+            return Provider.GetPlayerCameraView();
         }
 
-        public void Initialize()
+        protected override void OnViewCreated()
         {
-            _playerCameraView = _playerCameraProvider.GetPlayerCameraView();
-            _playerCameraView.Initialize(_playerCameraModel.GetConfig());
+            View.Initialize(Model.GetConfig());
         }
 
         public void Tick()
         {
-            if (_playerCameraModel.Following)
+            if (Model.Following)
             {
-                _playerCameraView.SetPosition(_playerCameraModel.CameraPosition);
+                View.SetPosition(Model.CameraPosition);
             }
         }
     }

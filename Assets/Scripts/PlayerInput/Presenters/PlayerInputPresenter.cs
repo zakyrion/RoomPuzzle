@@ -1,3 +1,4 @@
+using Core.Presenters;
 using JetBrains.Annotations;
 using PlayerInput.Models;
 using PlayerInput.Providers;
@@ -7,42 +8,39 @@ using UnityEngine;
 namespace PlayerInput.Presenters
 {
     [UsedImplicitly]
-    public class PlayerInputPresenter : IPlayerInputPresenter
+    public class PlayerInputPresenter : BasePresenter<IPlayerInputModel, IPlayerInputProvider, IPlayerInputView>, IPlayerInputPresenter
     {
-        private readonly IPlayerInputModel _playerInputModel;
-        private readonly IPlayerInputProvider _playerInputProvider;
-        private IPlayerInputView _playerInputView;
-
         public PlayerInputPresenter(IPlayerInputProvider playerInputProvider, IPlayerInputModel playerInputModel)
+            : base(playerInputModel, playerInputProvider)
         {
-            _playerInputProvider = playerInputProvider;
-            _playerInputModel = playerInputModel;
         }
 
-        public void Dispose()
+        protected override IPlayerInputView GetViewFromProvider()
         {
-            _playerInputView.OnJumpClicked -= OnJumpHandler;
-            _playerInputView.OnMoveChanged -= OnMoveHandler;
-
-            _playerInputProvider.Dispose();
+            return Provider.GetPlayerInputView();
         }
 
-        public void Initialize()
+        protected override void OnViewCreated()
         {
-            _playerInputView = _playerInputProvider.GetPlayerInputView();
+            View.OnJumpClicked += OnJumpHandler;
+            View.OnMoveChanged += OnMoveHandler;
+        }
 
-            _playerInputView.OnJumpClicked += OnJumpHandler;
-            _playerInputView.OnMoveChanged += OnMoveHandler;
+        protected override void OnBeforeDispose()
+        {
+            View.OnJumpClicked -= OnJumpHandler;
+            View.OnMoveChanged -= OnMoveHandler;
+            Provider.Dispose();
         }
 
         private void OnJumpHandler(bool jump)
         {
-            _playerInputModel.Jump(jump);
+            Model.Jump(jump);
         }
 
         private void OnMoveHandler(Vector2 move)
         {
-            _playerInputModel.SetMove(move);
+            Model.SetMove(move);
         }
     }
 }
